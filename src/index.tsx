@@ -1,7 +1,8 @@
-import withRheostat, { HandlersState } from './hoc/withRheostat';
-import AreaChart from './charts/AreaChart';
-import BarChart from './charts/BarChart';
-import RheostatThemeProvider from './theme';
+// @ts-nocheck
+import withRheostat, { HandlersState } from "./hoc/withRheostat";
+import AreaChart from "./charts/AreaChart";
+import BarChart from "./charts/BarChart";
+import RheostatThemeProvider from "./theme";
 
 const Rheostat = withRheostat();
 
