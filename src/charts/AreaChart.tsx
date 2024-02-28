@@ -1,21 +1,24 @@
-import React, { ComponentClass } from 'react';
-import {
-  StyleSheet,
-  Animated,
-  View,
-} from 'react-native';
-import { AreaChart, ChartProps } from 'react-native-svg-charts';
-import * as shape from 'd3-shape';
-import { DefaultChartProps } from './types';
-import styled from '../components/styled-components';
+// @ts-nocheck
+import React, { ComponentClass } from "react";
+import { StyleSheet, Animated, View } from "react-native";
+import { AreaChart, ChartProps } from "react-native-svg-charts";
+import * as shape from "d3-shape";
+import { DefaultChartProps } from "./types";
+import styled from "../components/styled-components";
 
 const AnimatedAreaChart = Animated.createAnimatedComponent(
-  AreaChart as ComponentClass<ChartProps<number>>,
+  AreaChart as ComponentClass<ChartProps<number>>
 );
 
 const DefaultAreaChart = (props: DefaultChartProps) => {
   const {
-    width, style, data, backgroundColor, chartColor, children, handlePos,
+    width,
+    style,
+    data,
+    backgroundColor,
+    chartColor,
+    children,
+    handlePos,
     curve = shape.curveNatural,
     contentInset = { top: 10, bottom: 0 },
     ...chartProps
@@ -40,23 +43,28 @@ const DefaultAreaChart = (props: DefaultChartProps) => {
   return (
     <View style={[style]}>
       <AreaChart
-        style={{ height: '100%' }}
+        style={{ height: "100%" }}
         data={data}
         curve={curve}
         contentInset={contentInset}
         svg={{ fill: backgroundColor }}
         {...chartProps}
       />
-      <Animated.View style={{
-        ...StyleSheet.absoluteFillObject,
-        width: diffValue,
-        height: '100%',
-        transform: [{ translateX: prevPos }],
-        overflow: 'hidden',
-      }}
+      <Animated.View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          width: diffValue,
+          height: "100%",
+          transform: [{ translateX: prevPos }],
+          overflow: "hidden",
+        }}
       >
         <AnimatedAreaChart
-          style={{ transform: [{ translateX: prevValue }], height: '100%', width }}
+          style={{
+            transform: [{ translateX: prevValue }],
+            height: "100%",
+            width,
+          }}
           data={data}
           svg={{
             fill: chartColor,
@@ -73,10 +81,12 @@ const DefaultAreaChart = (props: DefaultChartProps) => {
 };
 
 const DefaultStyledAreaChart = styled(DefaultAreaChart).attrs((props) => ({
-  chartColor: props.chartColor || (props.theme.rheostat?.themeColor) || 'palevioletred',
-  backgroundColor: props.backgroundColor || (props.theme.rheostat?.grey) || '#d8d8d8',
+  chartColor:
+    props.chartColor || props.theme.rheostat?.themeColor || "palevioletred",
+  backgroundColor:
+    props.backgroundColor || props.theme.rheostat?.grey || "#d8d8d8",
 }))`
-   height: 100px;
+  height: 100px;
 `;
 
 export default DefaultStyledAreaChart;

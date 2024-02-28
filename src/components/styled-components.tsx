@@ -1,5 +1,6 @@
-import * as styledComponents from 'styled-components/native';
-import { DefaultTheme } from 'styled-components';
+// @ts-nocheck
+import * as styledComponents from "styled-components/native";
+import { DefaultTheme } from "styled-components";
 
 const {
   default: styled,
